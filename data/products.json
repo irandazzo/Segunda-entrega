@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Title 1",
+      "description": "Description 1",
+      "code": "code1",
+      "price": 100,
+      "status": true,
+      "stock": 10,
+      "category": "Product"
+
+    },
+    {
+      "id": 2,
+      "title": "Title 2",
+      "description": "Description 2",
+      "code": "code2",
+      "price": 200,
+      "status": true,
+      "stock": 20,
+      "category": "Product"
+    }
+      ]
