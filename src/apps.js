@@ -39,11 +39,25 @@ app.use("/", viewsRoute);
 const httpServer = app.listen(PORT, () => {
     console.log(`Servidor Arriba en Puerto: ${PORT}`);
 });
-
 const io = new Server(httpServer);
 
-io.on("connection", async (socket) => {
-  console.log(`Client ${socket.id} connected`);
+const messages = [];
+
+io.on('connection', socket => {
+  console.log("Tenemos un cliente conectado");
+
+  socket.on('message', data =>{
+    messages.push(data)
+    io.emit('messageLogs', messages);
+    console.log(data);
+  })
+
+  socket.on('authenticated', data =>{
+    socket.broadcast.emit('newUserConnected', data);
+  })
+})
+/* io.on("connection", async (socket) => {
+  console.log(`Cliente ${socket.id} conectado`);
 
   socket.emit("products", products);
 
@@ -71,4 +85,4 @@ io.on("connection", async (socket) => {
   socket.on("disconnect", () => {
     console.log(`Client ${socket.id} disconnected`);
   });
-});
+}); */
